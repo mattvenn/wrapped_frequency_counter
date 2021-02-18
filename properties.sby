@@ -1,0 +1,16 @@
+[options]
+mode prove
+
+[engines]
+smtbmc
+
+[script]
+read -formal wrapper.v edge_detect.v  frequency_counter.v  seven_segment.v
+prep -top wrapped_frequency_counter
+
+[files]
+wrapper.v
+properties.v
+frequency_counter/src/frequency_counter.v
+frequency_counter/src/edge_detect.v
+frequency_counter/src/seven_segment.v

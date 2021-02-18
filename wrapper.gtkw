@@ -1,0 +1,27 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Thu Feb 18 15:30:33 2021
+[*]
+[dumpfile] "/home/matt/work/asic-workshop/course/wrapped_frequency_counter/wrapper.vcd"
+[dumpfile_mtime] "Thu Feb 18 15:30:16 2021"
+[dumpfile_size] 12882
+[savefile] "/home/matt/work/asic-workshop/course/wrapped_frequency_counter/wrapper.gtkw"
+[timestart] 896300
+[size] 1895 1102
+[pos] -1 -1
+*-16.000000 1040000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] wrapper.
+[treeopen] wrapper.frequency_counter_0.
+[sst_width] 273
+[signals_width] 581
+[sst_expanded] 1
+[sst_vpaned_height] 312
+@28
+wrapper.active
+wrapper.wb_clk_i
+wrapper.wb_rst_i
+wrapper.frequency_counter_0.digit
+@25
+wrapper.frequency_counter_0.segments[6:0]
+[pattern_trace] 1
+[pattern_trace] 0
