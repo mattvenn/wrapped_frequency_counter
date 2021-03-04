@@ -1,8 +1,12 @@
 --- 
 # information
 project: 
-  description: "Frequency counter"
-  owner: "Matt Venn"
+  title: "Frequency counter"
+  description: "Counts pulses on input and displays frequency on 2  seven segment displays"
+  picture: docs/frequency_counter.png
+  author: "Matt Venn"
+  github: https://github.com/mattvenn/wrapped_frequency_counter
+  license: LICENSE
 
 # test within caravel
 caravel_test:
