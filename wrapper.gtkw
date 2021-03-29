@@ -10,18 +10,18 @@
 [size] 1895 1102
 [pos] -1 -1
 *-16.000000 1040000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
-[treeopen] wrapper.
-[treeopen] wrapper.frequency_counter_0.
+[treeopen] wrapped_frequency_counter.
+[treeopen] wrapped_frequency_counter.frequency_counter_0.
 [sst_width] 273
 [signals_width] 581
 [sst_expanded] 1
 [sst_vpaned_height] 312
 @28
-wrapper.active
-wrapper.wb_clk_i
-wrapper.wb_rst_i
-wrapper.frequency_counter_0.digit
+wrapped_frequency_counter.active
+wrapped_frequency_counter.wb_clk_i
+wrapped_frequency_counter.wb_rst_i
+wrapped_frequency_counter.frequency_counter_0.digit
 @25
-wrapper.frequency_counter_0.segments[6:0]
+wrapped_frequency_counter.frequency_counter_0.segments[6:0]
 [pattern_trace] 1
 [pattern_trace] 0
