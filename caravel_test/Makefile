@@ -14,12 +14,11 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-FIRMWARE_PATH = ../..
-VERILOG_PATH = ../../../..
-RTL_PATH = $(VERILOG_PATH)/rtl
-IP_PATH = ../../../../ip
-BEHAVIOURAL_MODELS = ../../ 
-PROJECT_DIR = $(RTL_PATH)/wrapped_frequency_counter/
+CARAVEL_PATH = /home/matt/work/asic-workshop/video_caravel
+FIRMWARE_PATH = $(CARAVEL_PATH)/verilog/dv/caravel
+RTL_PATH = $(CARAVEL_PATH)/verilog/rtl
+BEHAVIOURAL_MODELS = $(FIRMWARE_PATH)/
+PROJECT_DIR = ../
 PROJECT_FILES = $(addprefix $(PROJECT_DIR), \
 	wrapper.v \
     frequency_counter/src/edge_detect.v \
@@ -29,8 +28,9 @@ PROJECT_FILES = $(addprefix $(PROJECT_DIR), \
 
 GCC_PREFIX?=riscv64-unknown-elf
 GCC_PATH?=/opt/riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14/bin/
-PDK_PATH?=$PDKPATH
+PDK_PATH?=/home/matt/work/asic-workshop/pdks-mpw-one-b/sky130A
 
+export PYTHONPATH := /home/matt/work/asic-workshop/course/wrapped_frequency_counter/frequency_counter/test:$(PYTHONPATH)
 
 SIM?=RTL
 
@@ -44,21 +44,22 @@ all:  coco_test
 hex:  ${PATTERN:=.hex}
 
 coco_test: ${PATTERN}.hex
+	echo $(CARAVEL_PATH)
 	rm -rf sim_build/
 	mkdir sim_build/
 	iverilog -o sim_build/sim.vvp -s frequency_counter_tb frequency_counter_tb.v -DSIM -DFUNCTIONAL \
-    -I $(BEHAVIOURAL_MODELS) -I $(PDK_PATH) -I $(IP_PATH) -I $(RTL_PATH) $(PROJECT_FILES)
+    -I $(BEHAVIOURAL_MODELS) -I $(PDK_PATH) -I $(RTL_PATH) $(PROJECT_FILES)
 	
 	MODULE=test_frequency_counter vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
 
 %.vvp: %_tb.v %.hex
 ifeq ($(SIM),RTL)
 	iverilog -DFUNCTIONAL -DSIM -I $(BEHAVIOURAL_MODELS) \
-	-I $(PDK_PATH) -I $(IP_PATH) -I $(RTL_PATH) \
+	-I $(PDK_PATH) -I $(RTL_PATH) \
 	$< -o $@
 else
 	iverilog -DFUNCTIONAL -DSIM -DGL -I $(BEHAVIOURAL_MODELS) \
-	-I $(PDK_PATH) -I $(IP_PATH) -I $(RTL_PATH) \
+	-I $(PDK_PATH) -I $(RTL_PATH) \
 	$< -o $@
 endif
 

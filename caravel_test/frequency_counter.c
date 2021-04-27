@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include "../../defs.h"
+#include "defs.h"
 
 /*
 	IO Test:
@@ -74,6 +74,7 @@ void main()
     // load the correct clock frequency
     // la [1] load
     // la [13:2] new period
+    reg_la0_data |= (3999 << 2) + (1 << 1);
 
 }
 

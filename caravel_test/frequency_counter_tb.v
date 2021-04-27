@@ -27,13 +27,20 @@ module frequency_counter_tb;
         #1;
     end
 
-	reg clock;
+	reg clk;
     reg RSTB;
 	reg power1, power2;
 	reg power3, power4;
 
     wire gpio;
     wire [37:0] mprj_io;
+
+    ///// convenience signals that match what the cocotb test modules are looking for
+    wire signal;
+    assign mprj_io[8] = signal;
+    wire digit = mprj_io[16];
+    wire[6:0] segments = mprj_io[15:9];
+    /////
 
 
 	wire flash_csb;
@@ -62,7 +69,7 @@ module frequency_counter_tb;
 		.vccd2	  (USER_VDD1V8),
 		.vssd1	  (VSS),
 		.vssd2	  (VSS),
-		.clock	  (clock),
+		.clock	  (clk),
 		.gpio     (gpio),
         	.mprj_io  (mprj_io),
 		.flash_csb(flash_csb),

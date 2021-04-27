@@ -1,16 +1,12 @@
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge, FallingEdge, ClockCycles
-import random
-from test.test_encoder import Encoder
-
-clocks_per_phase = 10
-
+from test_seven_segment import read_segments
 
 # takes ~60 seconds on my PC
 @cocotb.test()
 async def test_start(dut):
-    clock = Clock(dut.clock, 25, units="ns")
+    clock = Clock(dut.clk, 25, units="ns") # 40M
     cocotb.fork(clock.start())
     
     dut.RSTB <= 0
@@ -19,18 +15,30 @@ async def test_start(dut):
     dut.power3 <= 0;
     dut.power4 <= 0;
 
-    await ClockCycles(dut.clock, 8)
+    await ClockCycles(dut.clk, 8)
     dut.power1 <= 1;
-    await ClockCycles(dut.clock, 8)
+    await ClockCycles(dut.clk, 8)
     dut.power2 <= 1;
-    await ClockCycles(dut.clock, 8)
+    await ClockCycles(dut.clk, 8)
     dut.power3 <= 1;
-    await ClockCycles(dut.clock, 8)
+    await ClockCycles(dut.clk, 8)
     dut.power4 <= 1;
 
-    await ClockCycles(dut.clock, 80)
+    await ClockCycles(dut.clk, 80)
     dut.RSTB <= 1
+
+    # start the input signal
+    period_us = 4 # 25kHz
+    # default update period is 1200 cycles
+    input_signal = cocotb.fork(Clock(dut.signal, period_us,  units="us").start())
 
     # wait for the project to become active
     await RisingEdge(dut.uut.mprj.wrapped_frequency_counter.active)
+
+    # let counter settle 
+    await ClockCycles(dut.clk, 6000)
+
+    # read the 7 segment display
+    reading = await read_segments(dut)
+    assert(reading == 25)
 
