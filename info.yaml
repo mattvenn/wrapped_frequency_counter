@@ -11,7 +11,7 @@ project:
 # test within caravel
 caravel_test:
   recipe: "coco_test"
-  directory: "caravel_test"
+  directory: "caravel_frequency_counter"
   id: 1
   module_name: "wrapped_frequency_counter"
   instance_name: "wrapped_frequency_counter"
