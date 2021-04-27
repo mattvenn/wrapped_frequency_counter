@@ -14,26 +14,29 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-CARAVEL_PATH = /home/matt/work/asic-workshop/video_caravel
-FIRMWARE_PATH = $(CARAVEL_PATH)/verilog/dv/caravel
-RTL_PATH = $(CARAVEL_PATH)/verilog/rtl
-BEHAVIOURAL_MODELS = $(FIRMWARE_PATH)/
-PROJECT_DIR = ../
-PROJECT_FILES = $(addprefix $(PROJECT_DIR), \
-	wrapper.v \
-    frequency_counter/src/edge_detect.v \
-    frequency_counter/src/frequency_counter.v \
-    frequency_counter/src/seven_segment.v \
-)
+## Caravel Pointers
+CARAVEL_ROOT ?= ../../../caravel
+CARAVEL_PATH ?= $(CARAVEL_ROOT)
+CARAVEL_FIRMWARE_PATH = $(CARAVEL_PATH)/verilog/dv/caravel
+CARAVEL_VERILOG_PATH  = $(CARAVEL_PATH)/verilog
+CARAVEL_RTL_PATH = $(CARAVEL_VERILOG_PATH)/rtl
+CARAVEL_BEHAVIOURAL_MODELS = $(CARAVEL_VERILOG_PATH)/dv/caravel
 
-GCC_PREFIX?=riscv64-unknown-elf
-GCC_PATH?=/opt/riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14/bin/
-PDK_PATH?=/home/matt/work/asic-workshop/pdks-mpw-one-b/sky130A
+## User Project Pointers
+UPRJ_VERILOG_PATH ?= ../../../verilog
+UPRJ_RTL_PATH = $(UPRJ_VERILOG_PATH)/rtl
+UPRJ_BEHAVIOURAL_MODELS = ../
 
-export PYTHONPATH := /home/matt/work/asic-workshop/course/wrapped_frequency_counter/frequency_counter/test:$(PYTHONPATH)
+## RISCV GCC 
+GCC_PATH?=/ef/apps/bin
+GCC_PREFIX?=riscv32-unknown-elf
+PDK_PATH?=/ef/tech/SW/sky130A
 
+## Simulation mode: RTL/GL
 SIM?=RTL
 
+# include the modules that cocotb needs for test
+export PYTHONPATH := $(UPRJ_RTL_PATH)/wrapped_frequency_counter/frequency_counter/test
 
 .SUFFIXES:
 
@@ -44,30 +47,36 @@ all:  coco_test
 hex:  ${PATTERN:=.hex}
 
 coco_test: ${PATTERN}.hex
-	echo $(CARAVEL_PATH)
 	rm -rf sim_build/
 	mkdir sim_build/
 	iverilog -o sim_build/sim.vvp -s frequency_counter_tb frequency_counter_tb.v -DSIM -DFUNCTIONAL \
-    -I $(BEHAVIOURAL_MODELS) -I $(PDK_PATH) -I $(RTL_PATH) $(PROJECT_FILES)
+	-I $(PDK_PATH) \
+	-I $(CARAVEL_BEHAVIOURAL_MODELS) -I $(CARAVEL_RTL_PATH) \
+	-I $(UPRJ_BEHAVIOURAL_MODELS)    -I $(UPRJ_RTL_PATH)
 	
 	MODULE=test_frequency_counter vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
 
 %.vvp: %_tb.v %.hex
 ifeq ($(SIM),RTL)
-	iverilog -DFUNCTIONAL -DSIM -I $(BEHAVIOURAL_MODELS) \
-	-I $(PDK_PATH) -I $(RTL_PATH) \
-	$< -o $@
-else
-	iverilog -DFUNCTIONAL -DSIM -DGL -I $(BEHAVIOURAL_MODELS) \
-	-I $(PDK_PATH) -I $(RTL_PATH) \
-	$< -o $@
+	iverilog -DFUNCTIONAL -DSIM -I $(PDK_PATH) \
+	-I $(CARAVEL_BEHAVIOURAL_MODELS) -I $(CARAVEL_RTL_PATH) \
+	-I $(UPRJ_BEHAVIOURAL_MODELS)    -I $(UPRJ_RTL_PATH) \
+	$< -o $@ 
+else  
+	iverilog -DFUNCTIONAL -DSIM -DGL -I $(PDK_PATH) \
+	-I $(CARAVEL_BEHAVIOURAL_MODELS) -I $(CARAVEL_RTL_PATH) -I $(CARAVEL_VERILOG_PATH) \
+	-I $(UPRJ_BEHAVIOURAL_MODELS) -I$(UPRJ_RTL_PATH)   -I $(UPRJ_VERILOG_PATH) \
+	$< -o $@ 
 endif
 
 %.vcd: %.vvp
 	vvp $<
 
-%.elf: %.c $(FIRMWARE_PATH)/sections.lds $(FIRMWARE_PATH)/start.s
-	${GCC_PATH}/${GCC_PREFIX}-gcc -march=rv32imc -mabi=ilp32 -Wl,-Bstatic,-T,$(FIRMWARE_PATH)/sections.lds,--strip-debug -ffreestanding -nostdlib -o $@ $(FIRMWARE_PATH)/start.s $<
+test:
+	echo ${GCC_PATH}/${GCC_PREFIX}-gcc -I $(CARAVEL_PATH) -march=rv32imc -mabi=ilp32 -Wl,-Bstatic,-T,$(CARAVEL_FIRMWARE_PATH)/sections.lds,--strip-debug -ffreestanding -nostdlib -o $@ $(CARAVEL_FIRMWARE_PATH)/start.s $<
+
+%.elf: %.c $(CARAVEL_FIRMWARE_PATH)/sections.lds $(CARAVEL_FIRMWARE_PATH)/start.s
+	${GCC_PATH}/${GCC_PREFIX}-gcc -I $(CARAVEL_PATH) -march=rv32imc -mabi=ilp32 -Wl,-Bstatic,-T,$(CARAVEL_FIRMWARE_PATH)/sections.lds,--strip-debug -ffreestanding -nostdlib -o $@ $(CARAVEL_FIRMWARE_PATH)/start.s $<
 
 %.hex: %.elf
 	${GCC_PATH}/${GCC_PREFIX}-objcopy -O verilog $< $@ 
@@ -83,4 +92,3 @@ clean:
 	rm -f *.elf *.hex *.bin *.vvp *.vcd *.log
 
 .PHONY: clean hex all
-.SECONDARY: frequency_counter.vcd
