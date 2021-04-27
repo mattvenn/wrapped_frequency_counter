@@ -1,0 +1,88 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Tue Apr 20 15:28:31 2021
+[*]
+[dumpfile] "/home/matt/work/asic-workshop/course/wrapped_frequency_counter/caravel_test/frequency_counter.vcd"
+[dumpfile_mtime] "Tue Apr 20 15:24:40 2021"
+[dumpfile_size] 121577818
+[savefile] "/home/matt/work/asic-workshop/course/wrapped_frequency_counter/caravel_test/freq_count.gtkw"
+[timestart] 0
+[size] 2295 1225
+[pos] -1 -1
+*-26.000000 198600000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] frequency_counter_tb.
+[treeopen] frequency_counter_tb.uut.
+[treeopen] frequency_counter_tb.uut.mprj.
+[treeopen] frequency_counter_tb.uut.mprj.wrapped_frequency_counter.
+[treeopen] frequency_counter_tb.uut.mprj.wrapped_frequency_counter.frequency_counter_0.
+[sst_width] 553
+[signals_width] 574
+[sst_expanded] 1
+[sst_vpaned_height] 355
+@28
+frequency_counter_tb.RSTB
+@c00022
+frequency_counter_tb.mprj_io[37:0]
+@28
+(0)frequency_counter_tb.mprj_io[37:0]
+(1)frequency_counter_tb.mprj_io[37:0]
+(2)frequency_counter_tb.mprj_io[37:0]
+(3)frequency_counter_tb.mprj_io[37:0]
+(4)frequency_counter_tb.mprj_io[37:0]
+(5)frequency_counter_tb.mprj_io[37:0]
+(6)frequency_counter_tb.mprj_io[37:0]
+(7)frequency_counter_tb.mprj_io[37:0]
+(8)frequency_counter_tb.mprj_io[37:0]
+(9)frequency_counter_tb.mprj_io[37:0]
+(10)frequency_counter_tb.mprj_io[37:0]
+(11)frequency_counter_tb.mprj_io[37:0]
+(12)frequency_counter_tb.mprj_io[37:0]
+(13)frequency_counter_tb.mprj_io[37:0]
+(14)frequency_counter_tb.mprj_io[37:0]
+(15)frequency_counter_tb.mprj_io[37:0]
+(16)frequency_counter_tb.mprj_io[37:0]
+(17)frequency_counter_tb.mprj_io[37:0]
+(18)frequency_counter_tb.mprj_io[37:0]
+(19)frequency_counter_tb.mprj_io[37:0]
+(20)frequency_counter_tb.mprj_io[37:0]
+(21)frequency_counter_tb.mprj_io[37:0]
+(22)frequency_counter_tb.mprj_io[37:0]
+(23)frequency_counter_tb.mprj_io[37:0]
+(24)frequency_counter_tb.mprj_io[37:0]
+(25)frequency_counter_tb.mprj_io[37:0]
+(26)frequency_counter_tb.mprj_io[37:0]
+(27)frequency_counter_tb.mprj_io[37:0]
+(28)frequency_counter_tb.mprj_io[37:0]
+(29)frequency_counter_tb.mprj_io[37:0]
+(30)frequency_counter_tb.mprj_io[37:0]
+(31)frequency_counter_tb.mprj_io[37:0]
+(32)frequency_counter_tb.mprj_io[37:0]
+(33)frequency_counter_tb.mprj_io[37:0]
+(34)frequency_counter_tb.mprj_io[37:0]
+(35)frequency_counter_tb.mprj_io[37:0]
+(36)frequency_counter_tb.mprj_io[37:0]
+(37)frequency_counter_tb.mprj_io[37:0]
+@1401200
+-group_end
+@22
+frequency_counter_tb.segments[6:0]
+@28
+frequency_counter_tb.digit
+frequency_counter_tb.uut.mprj.wrapped_frequency_counter.active
+frequency_counter_tb.uut.mprj.wrapped_frequency_counter.frequency_counter_0.signal
+@22
+frequency_counter_tb.uut.mprj.wrapped_frequency_counter.frequency_counter_0.period[11:0]
+@28
+frequency_counter_tb.uut.mprj.wrapped_frequency_counter.frequency_counter_0.period_load
+frequency_counter_tb.uut.mprj.wrapped_frequency_counter.frequency_counter_0.reset
+@24
+frequency_counter_tb.uut.mprj.wrapped_frequency_counter.frequency_counter_0.update_period[11:0]
+@25
+frequency_counter_tb.uut.mprj.wrapped_frequency_counter.frequency_counter_0.clk_counter[11:0]
+@22
+frequency_counter_tb.uut.mprj.wrapped_frequency_counter.frequency_counter_0.ten_count[3:0]
+frequency_counter_tb.uut.mprj.wrapped_frequency_counter.frequency_counter_0.unit_count[3:0]
+@28
+frequency_counter_tb.uut.mprj.wrapped_frequency_counter.frequency_counter_0.update_digits
+[pattern_trace] 1
+[pattern_trace] 0
