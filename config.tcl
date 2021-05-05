@@ -3,6 +3,10 @@ set script_dir [file dirname [file normalize [info script]]]
 
 set ::env(DESIGN_NAME) wrapped_frequency_counter
 
+# save some time
+set ::env(RUN_KLAYOUT_XOR) 0
+set ::env(RUN_KLAYOUT_DRC) 0
+
 # Change if needed
 set ::env(VERILOG_FILES) "$::env(DESIGN_DIR)/wrapper.v \
     $::env(DESIGN_DIR)/frequency_counter/src/edge_detect.v \
