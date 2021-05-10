@@ -1,6 +1,6 @@
 import cocotb
 from cocotb.clock import Clock
-from cocotb.triggers import RisingEdge, FallingEdge, ClockCycles
+from cocotb.triggers import RisingEdge, FallingEdge, ClockCycles, with_timeout
 from test_seven_segment import read_segments
 
 # takes ~60 seconds on my PC
@@ -32,8 +32,8 @@ async def test_start(dut):
     # default update period is 1200 cycles
     input_signal = cocotb.fork(Clock(dut.signal, period_us,  units="us").start())
 
-    # wait for the project to become active
-    await RisingEdge(dut.uut.mprj.wrapped_frequency_counter.active)
+    # wait for the project to become active - time out if necessary - should happen around 165us
+    await with_timeout(RisingEdge(dut.uut.mprj.wrapped_frequency_counter.active), 180, 'us')
 
     # let counter settle 
     await ClockCycles(dut.clk, 6000)
