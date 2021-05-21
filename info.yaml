@@ -5,7 +5,7 @@ project:
   description: "Counts pulses on input and displays frequency on 2  seven segment displays"
   picture: docs/frequency_counter.png
   author: "Matt Venn"
-  github: https://github.com/mattvenn/wrapped_frequency_counter/tree/caravel-mpw2
+  github: https://github.com/mattvenn/wrapped_frequency_counter/tree/caravel-mpw-two-c
   license: LICENSE
 
 # test within caravel
