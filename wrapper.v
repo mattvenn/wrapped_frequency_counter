@@ -39,6 +39,9 @@ module wrapped_frequency_counter(
     // IRQ
     output wire [2:0] irq,
     
+    // extra user clock
+    input wire user_clock2,
+
     // active input, only connect tristated outputs if this is high
     input wire active
 );
