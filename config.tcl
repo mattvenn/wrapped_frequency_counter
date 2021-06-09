@@ -7,6 +7,9 @@ set ::env(DESIGN_NAME) wrapped_frequency_counter
 set ::env(RUN_KLAYOUT_XOR) 0
 set ::env(RUN_KLAYOUT_DRC) 0
 
+# don't put clock buffers on the outputs, need tristates to be the final cells
+set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
+
 # Change if needed
 set ::env(VERILOG_FILES) "$::env(DESIGN_DIR)/wrapper.v \
     $::env(DESIGN_DIR)/frequency_counter/src/edge_detect.v \
