@@ -2,19 +2,21 @@
 `ifdef FORMAL
     `define MPRJ_IO_PADS 38    
 `endif
-module wrapped_frequency_counter(
+
+//`define USE_WB  0
+`define USE_LA  1
+`define USE_IO  1
+//`define USE_MEM 0
+//`define USE_IRQ 0
+
+module wrapped_frequency_counter (
 `ifdef USE_POWER_PINS
-    inout vdda1,	// User area 1 3.3V supply
-    inout vdda2,	// User area 2 3.3V supply
-    inout vssa1,	// User area 1 analog ground
-    inout vssa2,	// User area 2 analog ground
-    inout vccd1,	// User area 1 1.8V supply
-    inout vccd2,	// User area 2 1.8v supply
-    inout vssd1,	// User area 1 digital ground
-    inout vssd2,	// User area 2 digital ground
+    inout vccd1,
+    inout vssd1,
 `endif
     // interface as user_proj_example.v
     input wire wb_clk_i,
+`ifdef USE_WB
     input wire wb_rst_i,
     input wire wbs_stb_i,
     input wire wbs_cyc_i,
@@ -24,24 +26,31 @@ module wrapped_frequency_counter(
     input wire [31:0] wbs_adr_i,
     output wire wbs_ack_o,
     output wire [31:0] wbs_dat_o,
+`endif
 
     // Logic Analyzer Signals
     // only provide first 32 bits to reduce wiring congestion
+`ifdef USE_LA
     input  wire [31:0] la_data_in,
     output wire [31:0] la_data_out,
     input  wire [31:0] la_oenb,
+`endif
 
     // IOs
+`ifdef USE_IO
     input  wire [`MPRJ_IO_PADS-1:0] io_in,
     output wire [`MPRJ_IO_PADS-1:0] io_out,
     output wire [`MPRJ_IO_PADS-1:0] io_oeb,
+`endif
 
     // IRQ
+`ifdef USE_IRQ
     output wire [2:0] irq,
-    
+`endif
+
     // extra user clock
     input wire user_clock2,
-
+    
     // active input, only connect tristated outputs if this is high
     input wire active
 );
@@ -65,13 +74,23 @@ module wrapped_frequency_counter(
     `include "properties.v"
     `else
     // tristate buffers
+    
+    `ifdef USE_WB
     assign wbs_ack_o    = active ? buf_wbs_ack_o    : 1'bz;
     assign wbs_dat_o    = active ? buf_wbs_dat_o    : 32'bz;
+    `endif
+    `ifdef USE_LA
     assign la_data_out  = active ? buf_la_data_out  : 32'bz;
+    `endif
+    `ifdef USE_IO
     assign io_out       = active ? buf_io_out       : {`MPRJ_IO_PADS{1'bz}};
     assign io_oeb       = active ? buf_io_oeb       : {`MPRJ_IO_PADS{1'bz}};
+    `endif
+    `ifdef USE_IRQ
     assign irq          = active ? buf_irq          : 3'bz;
     `endif
+    `endif
+
 
     // permanently set oeb so that outputs are always enabled: 0 is output, 1 is high-impedance
     assign buf_io_oeb = {`MPRJ_IO_PADS{1'b0}};
