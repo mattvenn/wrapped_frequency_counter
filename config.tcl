@@ -17,7 +17,7 @@ set ::env(VERILOG_FILES) "$::env(DESIGN_DIR)/wrapper.v \
     $::env(DESIGN_DIR)/frequency_counter/src/seven_segment.v"
 
 set ::env(PL_TARGET_DENSITY) 0.7
-set ::env(DIE_AREA) "0 0 150 180"
+set ::env(DIE_AREA) "0 0 150 210"
 set ::env(FP_SIZING) absolute
 
 set ::env(SYNTH_DEFINES) "MPRJ_IO_PADS=38"

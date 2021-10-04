@@ -5,8 +5,10 @@ project:
   description: "Counts pulses on input and displays frequency on 2  seven segment displays"
   picture: docs/frequency_counter.png
   author: "Matt Venn"
-  github: https://github.com/mattvenn/wrapped_frequency_counter/tree/caravel-mpw-two-c
+  github: https://github.com/mattvenn/wrapped_frequency_counter/tree/mpw3
   license: LICENSE
+
+interfaces: ['la1', 'gpio']
 
 # test within caravel
 caravel_test:
