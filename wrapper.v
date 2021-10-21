@@ -67,12 +67,20 @@ module wrapped_frequency_counter (
 
     `ifdef FORMAL
     // formal can't deal with z, so set all outputs to 0 if not active
+    `ifdef USE_WB
     assign wbs_ack_o    = active ? buf_wbs_ack_o    : 1'b0;
     assign wbs_dat_o    = active ? buf_wbs_dat_o    : 32'b0;
+    `endif
+    `ifdef USE_LA
     assign la1_data_out = active ? buf_la1_data_out  : 32'b0;
+    `endif
+    `ifdef USE_IO
     assign io_out       = active ? buf_io_out       : {`MPRJ_IO_PADS{1'b0}};
     assign io_oeb       = active ? buf_io_oeb       : {`MPRJ_IO_PADS{1'b0}};
+    `endif
+    `ifdef USE_IRQ
     assign irq          = active ? buf_irq          : 3'b0;
+    `endif
     `include "properties.v"
     `else
     // tristate buffers
