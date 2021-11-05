@@ -1733,9 +1733,9 @@ MACRO wrapped_frequency_counter
   END wb_clk_i
   OBS
       LAYER li1 ;
-        RECT 5.520 1.785 147.515 205.615 ;
+        RECT 5.520 10.795 146.595 198.645 ;
       LAYER met1 ;
-        RECT 1.910 1.740 147.575 205.660 ;
+        RECT 1.910 10.640 146.655 198.800 ;
       LAYER met2 ;
         RECT 1.940 205.720 3.490 206.450 ;
         RECT 4.330 205.720 6.250 206.450 ;
@@ -2045,6 +2045,9 @@ MACRO wrapped_frequency_counter
         RECT 4.400 2.400 146.000 3.760 ;
         RECT 4.400 2.360 145.600 2.400 ;
         RECT 4.000 1.535 145.600 2.360 ;
+      LAYER met4 ;
+        RECT 29.875 10.640 50.635 198.800 ;
+        RECT 53.035 10.640 72.385 198.800 ;
   END
 END wrapped_frequency_counter
 END LIBRARY
