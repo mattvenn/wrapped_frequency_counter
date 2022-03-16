@@ -5,8 +5,9 @@ project:
   description: "Counts pulses on input and displays frequency on 2  seven segment displays"
   picture: docs/frequency_counter.png
   author: "Matt Venn"
-  github: https://github.com/mattvenn/wrapped_frequency_counter/tree/caravel-mpw-two-c
   license: LICENSE
+
+interfaces: ['la1', 'gpio']
 
 # test within caravel
 caravel_test:
@@ -39,9 +40,9 @@ source:
     - frequency_counter/src/seven_segment.v
 
 # gds - check size = 300x300, nothing on metal 5, do a DRC, check 141 tristate buffers, check LVS
-gds:
-  directory: "gds"
-  gds_filename: "wrapped_frequency_counter.gds"
-  lvs_filename: "wrapped_frequency_counter.lvs.powered.v"
-  lef_filename: "wrapped_frequency_counter.lef"
+final:
+  directory: "final"
+  gds_filename: "gds/wrapped_frequency_counter.gds"
+  lvs_filename: "verilog/gl/wrapped_frequency_counter.v"
+  lef_filename: "lef/wrapped_frequency_counter.lef"
 
