@@ -107,12 +107,12 @@ module wrapped_frequency_counter (
     // instantiate your module here, connecting what you need of the above signals
     frequency_counter frequency_counter_0(
         .clk        (wb_clk_i),
-        .reset      (la_data_in[0]),
+        .reset      (la1_data_in[0]),
         .signal     (io_in[8]),
         .segments   (buf_io_out[15:9]),
         .digit      (buf_io_out[16]),
-        .period_load(la_data_in[1]),
-        .period     (la_data_in[13:2])
+        .period_load(la1_data_in[1]),
+        .period     (la1_data_in[13:2])
     );
 
 endmodule 
