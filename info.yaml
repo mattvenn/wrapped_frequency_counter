@@ -5,14 +5,15 @@ project:
   description: "Counts pulses on input and displays frequency on 2  seven segment displays"
   picture: docs/frequency_counter.png
   author: "Matt Venn"
-  github: https://github.com/mattvenn/wrapped_frequency_counter
   license: LICENSE
+
+interfaces: ['la1', 'gpio']
 
 # test within caravel
 caravel_test:
   recipe: "coco_test"
-  directory: "caravel_test"
-  id: 1
+  directory: "caravel_frequency_counter"
+  id: 2
   module_name: "wrapped_frequency_counter"
   instance_name: "wrapped_frequency_counter"
 
@@ -27,13 +28,6 @@ wrapper_proof:
   directory: "."
   sby: "properties.sby"
 
-# check the wrapper hasn't changed except for the module instantiation
-wrapper_cksum:
-  directory: "."
-  instance_start: 70
-  instance_end  : 79 # these lines will be removed before md5sum
-  filename: "wrapper.v"
-
 # openlane config, used in case I need to re-harden
 openlane:
   config: "config.tcl"
@@ -46,9 +40,9 @@ source:
     - frequency_counter/src/seven_segment.v
 
 # gds - check size = 300x300, nothing on metal 5, do a DRC, check 141 tristate buffers, check LVS
-gds:
-  directory: "gds"
-  gds_filename: "wrapped_frequency_counter.gds"
-  lvs_filename: "wrapped_frequency_counter.lvs.powered.v"
-  lef_filename: "wrapped_frequency_counter.lef"
+final:
+  directory: "final"
+  gds_filename: "gds/wrapped_frequency_counter.gds"
+  lvs_filename: "verilog/gl/wrapped_frequency_counter.v"
+  lef_filename: "lef/wrapped_frequency_counter.lef"
 

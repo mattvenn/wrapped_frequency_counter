@@ -15,13 +15,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include "../../defs.h"
+#include <defs.h>
+#include <stub.c>
 
-/*
-	IO Test:
-		- Configures MPRJ lower 8-IO pins as outputs
-		- Observes counter value through the MPRJ lower 8 IO pins (in the testbench)
-*/
+#define PROJECT_ID 2
 
 void main()
 {
@@ -61,19 +58,22 @@ void main()
     while (reg_mprj_xfer == 1);
 
     // activate the project by setting the 1st bit of 2nd bank of LA
-    reg_la1_ena  = 0;
-    reg_la1_data = 1 << 1;
+    reg_la0_iena = 0;
+    reg_la0_oenb = 0xffffffff;
+    reg_la0_data = 1 << PROJECT_ID; 
 
     // reset design with 0bit of 1st bank of LA
-    reg_la0_ena  = 0;
-    reg_la0_data = 1;
-    reg_la0_data = 0;
+    reg_la1_iena = 0;
+    reg_la1_oenb = 0xffffffff;
+    reg_la1_data = 1;
+    reg_la1_data = 0;
 
     // no need for anything else as this design is free running.
 
     // load the correct clock frequency
     // la [1] load
     // la [13:2] new period
+    reg_la1_data |= (3999 << 2) + (1 << 1);
 
 }
 
