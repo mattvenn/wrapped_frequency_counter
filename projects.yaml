@@ -60,6 +60,6 @@ docs:
 projects:
     rgb_mixer:
         repo:   'https://github.com/mattvenn/wrapped_frequency_counter'
-        commit: 'mpw7'
+        commit: 'mpw8'
         pos:    '0 0 N'
 
