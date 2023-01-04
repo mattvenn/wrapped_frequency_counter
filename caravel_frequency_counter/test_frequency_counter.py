@@ -33,7 +33,7 @@ async def test_start(dut):
     input_signal = cocotb.start_soon(Clock(dut.signal, period_us,  units="us").start())
 
     # wait for the project to become active - time out if necessary - should happen around 165us
-    await with_timeout(RisingEdge(dut.uut.mprj.wrapped_frequency_counter_2.active), 500, 'us')
+    await with_timeout(RisingEdge(dut.active), 600, 'us')
 
     # let counter settle 
     await ClockCycles(dut.clk, 7000)

@@ -36,7 +36,11 @@ module frequency_counter_tb;
     wire signal;
     assign mprj_io[8] = signal;
     wire digit = mprj_io[16];
-    wire[6:0] segments = mprj_io[15:9];
+    wire [6:0] segments = mprj_io[15:9];
+    wire active = mprj_io[17];
+    wire [1:0] dbg_state = mprj_io[19:18];
+    wire [2:0] dbg_clk_count = mprj_io[22:20];
+    wire [2:0] dbg_edge_count = mprj_io[25:23];
     /////
 
 

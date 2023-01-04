@@ -1,11 +1,11 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1671183550
+timestamp 1671727935
 << obsli1 >>
 rect 1104 2159 28888 47345
 << obsm1 >>
-rect 14 2048 29978 47456
+rect 14 2128 29978 47376
 << metal2 >>
 rect -10 49200 102 49800
 rect 634 49200 746 49800
@@ -249,7 +249,7 @@ rect 29200 23748 29800 23988
 rect 200 23068 800 23308
 rect 29200 23068 29800 23308
 rect 200 22388 800 22628
-rect 29200 21708 29800 21948
+rect 29200 21708 29800 21994
 rect 200 21028 800 21268
 rect 29200 21028 29800 21268
 rect 200 20348 800 20588
@@ -263,7 +263,7 @@ rect 29200 18308 29800 18548
 rect 200 17628 800 17868
 rect 29200 17628 29800 17868
 rect 200 16948 800 17188
-rect 29200 16268 29800 16508
+rect 29200 16268 29800 16554
 rect 200 15588 800 15828
 rect 29200 15588 29800 15828
 rect 200 14908 800 15148
@@ -423,9 +423,9 @@ rect 880 22988 29120 23388
 rect 29880 22988 29979 23388
 rect 800 22708 29979 22988
 rect 880 22308 29979 22708
-rect 800 22028 29979 22308
-rect 800 21628 29120 22028
-rect 29880 21628 29979 22028
+rect 800 22074 29979 22308
+rect 800 21628 29120 22074
+rect 29880 21628 29979 22074
 rect 800 21348 29979 21628
 rect 880 20948 29120 21348
 rect 29880 20948 29979 21348
@@ -446,9 +446,9 @@ rect 880 17548 29120 17948
 rect 29880 17548 29979 17948
 rect 800 17268 29979 17548
 rect 880 16868 29979 17268
-rect 800 16588 29979 16868
-rect 800 16188 29120 16588
-rect 29880 16188 29979 16588
+rect 800 16634 29979 16868
+rect 800 16188 29120 16634
+rect 29880 16188 29979 16634
 rect 800 15908 29979 16188
 rect 880 15508 29120 15908
 rect 29880 15508 29979 15908
@@ -523,7 +523,7 @@ rect 21782 2128 22102 47376
 rect 25255 2128 25575 47376
 rect 28728 2128 29048 47376
 << obsm4 >>
-rect 18827 11867 18893 27981
+rect 19563 24651 19629 42941
 << labels >>
 rlabel metal3 s 200 36668 800 36908 6 active
 port 1 nsew signal input
@@ -609,7 +609,7 @@ rlabel metal3 s 200 13548 800 13788 6 io_oeb[10]
 port 41 nsew signal output
 rlabel metal3 s 29200 32588 29800 32828 6 io_oeb[11]
 port 42 nsew signal output
-rlabel metal3 s 29200 21708 29800 21948 6 io_oeb[12]
+rlabel metal3 s 29200 21708 29800 21994 6 io_oeb[12]
 port 43 nsew signal output
 rlabel metal3 s 29200 21028 29800 21268 6 io_oeb[13]
 port 44 nsew signal output
@@ -755,7 +755,7 @@ rlabel metal2 s 14802 200 14914 800 6 io_out[8]
 port 114 nsew signal output
 rlabel metal3 s 200 12188 800 12428 6 io_out[9]
 port 115 nsew signal output
-rlabel metal3 s 29200 16268 29800 16508 6 la1_data_in[0]
+rlabel metal3 s 29200 16268 29800 16554 6 la1_data_in[0]
 port 116 nsew signal input
 rlabel metal2 s 17378 200 17490 800 6 la1_data_in[10]
 port 117 nsew signal input
@@ -969,8 +969,8 @@ port 214 nsew signal input
 string FIXED_BBOX 0 0 30000 50000
 string LEFclass BLOCK
 string LEFview TRUE
-string GDS_END 2227630
-string GDS_FILE /openlane/designs/wrapped_frequency_counter/runs/RUN_2022.12.16_09.38.01/results/signoff/wrapped_frequency_counter.magic.gds
-string GDS_START 434220
+string GDS_END 2193588
+string GDS_FILE /openlane/designs/wrapped_frequency_counter/runs/RUN_2022.12.22_16.51.06/results/signoff/wrapped_frequency_counter.magic.gds
+string GDS_START 382098
 << end >>
 

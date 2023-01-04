@@ -104,15 +104,22 @@ module wrapped_frequency_counter (
     // permanently set oeb so that outputs are always enabled: 0 is output, 1 is high-impedance
     assign buf_io_oeb = {`MPRJ_IO_PADS{1'b0}};
 
+    // debug signals
+    assign buf_io_out[17] = active;
+
     // instantiate your module here, connecting what you need of the above signals
     frequency_counter frequency_counter_0(
-        .clk        (wb_clk_i),
-        .reset      (la1_data_in[0]),
-        .signal     (io_in[8]),
-        .segments   (buf_io_out[15:9]),
-        .digit      (buf_io_out[16]),
-        .period_load(la1_data_in[1]),
-        .period     (la1_data_in[13:2])
+        .clk            (wb_clk_i),
+        .reset          (la1_data_in[0]),
+        .signal         (io_in[8]),
+        .segments       (buf_io_out[15:9]),
+        .digit          (buf_io_out[16]),
+        .period_load    (la1_data_in[1]),
+        .period         (la1_data_in[13:2]),
+        // debug
+        .dbg_state      (buf_io_out[19:18]),
+        .dbg_clk_count  (buf_io_out[22:20]),
+        .dbg_edge_count (buf_io_out[25:23])
     );
 
 endmodule 

@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
-[*] Fri Dec 16 10:04:05 2022
+[*] Thu Dec 22 16:57:11 2022
 [*]
 [dumpfile] "/home/matt/work/asic-workshop/shuttle8/zero_to_asic_mpw8/verilog/dv/caravel_frequency_counter/frequency_counter.vcd"
-[dumpfile_mtime] "Fri Dec 16 10:03:48 2022"
-[dumpfile_size] 485525
+[dumpfile_mtime] "Thu Dec 22 16:56:20 2022"
+[dumpfile_size] 584328
 [savefile] "/home/matt/work/asic-workshop/shuttle8/zero_to_asic_mpw8/verilog/dv/caravel_frequency_counter/freq_count.gtkw"
 [timestart] 0
 [size] 2429 1225
 [pos] -1 -1
-*-27.799999 566025000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-27.799999 731000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] frequency_counter_tb.
 [treeopen] frequency_counter_tb.uut.
 [treeopen] frequency_counter_tb.uut.mprj.
@@ -79,10 +79,15 @@ frequency_counter_tb.segments[6:0]
 frequency_counter_tb.digit
 frequency_counter_tb.signal
 frequency_counter_tb.uut.mprj.wrapped_frequency_counter_2.active
+frequency_counter_tb.active
 frequency_counter_tb.uut.mprj.wrapped_frequency_counter_2.frequency_counter_0.reset
 @8024
 frequency_counter_tb.uut.mprj.wrapped_frequency_counter_2.frequency_counter_0.clk_counter[11:0]
-@25
+@24
 frequency_counter_tb.uut.mprj.wrapped_frequency_counter_2.frequency_counter_0.period[11:0]
+@28
+frequency_counter_tb.dbg_clk_count[2:0]
+frequency_counter_tb.dbg_edge_count[2:0]
+frequency_counter_tb.dbg_state[1:0]
 [pattern_trace] 1
 [pattern_trace] 0
